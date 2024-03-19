@@ -1,1 +1,29 @@
-<p>post works!</p>
+<form [formGroup]="datosUsuario" (ngSubmit)="EnviarDatos()" class="w-50 mx-auto mt-5">
+    <div class="mb-3 d-flex align-items-center">
+      <a routerLink="../home" class="text-dark">
+       volver 
+      </a>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputTitle">Title</label>
+      <input type="text" class="form-control" id="exampleInputTitle" formControlName="title" placeholder="Enter title">
+      <span class="danger" *ngIf="datosUsuario.get('title')!.invalid && datosUsuario.get('title')!.touched">La Identificación es <strong>Obligatoria</strong></span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPrice">Price</label>
+      <input type="number" class="form-control" id="exampleInputPrice" formControlName="price" placeholder="Price">
+      <span class="danger" *ngIf="datosUsuario.get('price')!.invalid && datosUsuario.get('price')!.touched">La Identificación es <strong>Obligatoria</strong></span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputDescription">Description</label>
+      <input type="text" class="form-control" id="exampleInputDescription" formControlName="description" placeholder="Description">
+      <span class="danger" *ngIf="datosUsuario.get('description')!.invalid && datosUsuario.get('description')!.touched">La Identificación es <strong>Obligatoria</strong></span>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputCategoryId">Category ID</label>
+      <input type="number" class="form-control" id="exampleInputCategoryId" formControlName="categoryId" placeholder="Category ID">
+      <span class="danger" *ngIf="datosUsuario.get('categoryId')!.invalid && datosUsuario.get('categoryId')!.touched">La Identificación es <strong>Obligatoria</strong></span>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" [disabled]="datosUsuario.invalid">Submit</button>
+  </form>
