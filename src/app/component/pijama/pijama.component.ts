@@ -10,9 +10,12 @@ export class PijamaComponent implements OnInit {
   info:any
 constructor(private ConexionService:ConexionService){}
 ngOnInit(): void {
+
     this.ConexionService.getRopaParaDormir().subscribe(data => {
       console.log(data)
+      console.log(data)
       this.info=data
+      console.log(this.info)
     })
 }
 }

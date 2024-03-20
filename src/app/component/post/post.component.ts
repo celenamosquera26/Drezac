@@ -24,11 +24,20 @@ export class PostComponent {
       price: this.datosUsuario.get('price')!.value,
       description: this.datosUsuario.get('description')!.value,
       categoryId: this.datosUsuario.get('categoryId')!.value,
-      images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg"]
+      images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg"]
     };
+    //Al parecer es necesario poner más de una URL para que la api lo detecte como un array, miren el comentario de abajo, es importante
     console.log(datos)
     this.drezac.postElaborar(datos).subscribe((data:any)=> {
-      console.log(data)
+      //Cuando ustedes ponen campos en el fomulario post, en consola, saldrán los datos
+      console.log(data)//En este sacara todo el array de datos
+      console.log(data.id)//En este se mostrará únicamente la id del nuevo producto
+      //Los dos salen en consola de  http://localhost:4200/enviardatos, así se llamó la ruta
+      //Es IMPORTANTE que vean en consola el número que sale en http://localhost:4200/enviardatos cuando le dan a enviar datos
+      //Ese número es el id del nuevo producto, cuando lo tengan, pongan: https://api.escuelajs.co/api/v1/products/numeroDelProducto
+      //Si en consola les sale 50, entonces deben poner https://api.escuelajs.co/api/v1/products/50
+      //Eso les mostrará la información del producto con la id 50, esto es un ejemplo
+      //Vayan a conexion.service.ts a partir de la línea 10
     })
   }
 }

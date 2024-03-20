@@ -2,5 +2,7 @@
     <p>pijama works!</p>
     <div *ngFor="let Ropa of info" class="item">
         <p>{{Ropa.price}}</p>
+        <!--La linéa de abajo establece las imágenes dadas por platzi-->
+        <img src="{{Ropa.category.image}}" alt="">
     </div>
 </div>
