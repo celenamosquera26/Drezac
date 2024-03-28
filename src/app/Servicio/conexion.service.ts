@@ -18,7 +18,7 @@ getRopaParaDormir(){
   */
   //Hablo de este número                               |
   //                                                   v
-  return this.Vestido.get(`${this.URL}/products?offset=100&limit=20`);
+  return this.Vestido.get(`${this.URL}/products?offset=50&limit=20`);
   /*
   Aumenten el número hasta que lleguen al final, si al copilar no aparece ningún producto es porque se pasaron demasiado y deben bajarle un poco, el 50 en mi caso
   aparece el producto que cree, pero solo en mi caso, estoy un 99.99% que no aparecerá para ustedes, primero creen el producto y busquenlo
