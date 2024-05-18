@@ -25,9 +25,11 @@ export class PutComponent {
     };
     console.log(datos)
     console.log(datos.id)
+    /*
     this.drezac.putProduct(datos.title, datos.price, datos.id).subscribe(data => {
       console.log(data)
     })
+    */
   }
 }
 

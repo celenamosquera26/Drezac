@@ -1,9 +1,40 @@
 <div class="container">
-    <p>pijama works!</p>
-    <div *ngFor="let Ropa of info" class="item">
-        <p>{{Ropa.price}}</p>
+    <form action="" [formGroup]="datosCrear">
+        <div class="form-group">
+            <label for="exampleInputTitle">Title</label>
+            <input type="text" class="form-control" Title="exampleInputTitle" formControlName="title" placeholder="title">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPrice">Price</label>
+            <input type="number" class="form-control" Price="exampleInputPrice" formControlName="price" placeholder="price">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputDescription">Description</label>
+            <input type="text" class="form-control" Description="exampleInputDescription" formControlName="description" placeholder="description">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputCategoryId">Category id</label>
+            <input type="number" class="form-control" CategoryId="exampleInputCategoryId" formControlName="categoryId" placeholder="CategoryId">
+          </div>
+          <button (click)="crearProducto()">Crear</button>
+    </form>
+    <div *ngFor="let ropa of info" class="item">
+        <p>{{ropa.title}}</p>
+        <p>{{ropa.price}}</p>
         <!--La linéa de abajo establece las imágenes dadas por platzi-->
-        <img src="{{Ropa.category.image}}" alt="">
-        <button (click)="eliminarProducto(Ropa,Ropa.id)">eliminarProducto</button>
+        <img src="{{ropa.category.image}}" alt="" class="imgProducto">
+        <button (click)="eliminarProducto(ropa,ropa.id)">eliminarProducto</button>
+        <button (click)="abrirEdicion(ropa)">Abrir formulario de edición</button>
+        <form action="" [formGroup]="datosProducto" *ngIf="productoSeleccionado == ropa">
+            <div class="form-group">
+                <label for="exampleInputTitle">Title</label>
+                <input type="text" class="form-control" id="exampleInputTitle" formControlName="title" placeholder="Enter title">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPrice">Price</label>
+                <input type="text" class="form-control" id="exampleInputPrice" formControlName="price" placeholder="Enter price">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="editarProducto(ropa.id)">Editar producto</button>
+        </form>        
     </div>
 </div>

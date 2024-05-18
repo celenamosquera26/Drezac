@@ -18,7 +18,7 @@ getRopaParaDormir(){
   */
   //Hablo de este número                               |
   //                                                   v
-  return this.Vestido.get(`${this.URL}/products?offset=50&limit=20`);
+  return this.Vestido.get(`${this.URL}/products?offset=40&limit=20`);
   /*
   Aumenten el número hasta que lleguen al final, si al copilar no aparece ningún producto es porque se pasaron demasiado y deben bajarle un poco, el 50 en mi caso
   aparece el producto que cree, pero solo en mi caso, estoy un 99.99% que no aparecerá para ustedes, primero creen el producto y busquenlo
@@ -27,26 +27,29 @@ getRopaParaDormir(){
 }
 
 postElaborar(product:Producto){
+  let data = {
+    product:product
+  }
+  console.log(data.product)
   /*
   El error se daba por culpa de  images y category, images lo explico en post.component.ts, category debe tener un valor que existe en la api,
   no estoy muy seguro cuál es el valor máximo, pero cuando creen un producto en el formulario post en el campo de category pongan números pequeños como 5
   */
- console.log(product)
-  return this.Vestido.post(`${this.URL}/products`, product);
+  return this.Vestido.post(`${this.URL}/products`, data.product);
 }
 
 deleteProduct(product: Producto, id:number){
   return this.Vestido.delete(`${this.URL}/products/${id}`)
 }
 
-putProduct(title:string, price: number, id:number){
+putProduct(title:string, price: number,images:string, id:number){
   this.datos = {
       title: title,
-      price: price
+      price: price,
+      images:images
   }
-  
+  console.log(this.datos)
   console.log(id)
-  console.log(`${this.URL}/products/${id}`)
   return this.Vestido.put(`${this.URL}/products/${id}`, this.datos)
 }
 
