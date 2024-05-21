@@ -16,6 +16,10 @@
             <label for="exampleInputCategoryId">Category id</label>
             <input type="number" class="form-control" CategoryId="exampleInputCategoryId" formControlName="categoryId" placeholder="CategoryId">
           </div>
+          <div class="form-group">
+            <label for="exampleInputImages">URL image</label>
+            <input type="text" class="form-control" Images="exampleInputImages" formControlName="images" placeholder="Images">
+          </div>
           <button type="button" (click)="crearProducto()">Crear</button>
     </form>
     <div *ngFor="let ropa of info" class="item">
@@ -35,6 +39,10 @@
                 <label for="exampleInputPrice">Price</label>
                 <input type="text" class="form-control" id="exampleInputPrice" formControlName="price" placeholder="Enter price">
             </div>
+            <div class="form-group">
+              <label for="exampleInputImages">Images</label>
+              <input type="text" class="form-control" id="exampleInputImages" formControlName="images" placeholder="Enter Images">
+          </div>
             <button type="submit" class="btn btn-primary" (click)="editarProducto(ropa.id)">Editar producto</button>
         </form>        
     </div>

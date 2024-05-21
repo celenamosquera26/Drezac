@@ -15,6 +15,7 @@ export class PutComponent {
       id: ['', Validators.required],
       title: ['', Validators.required],
       price: ['', Validators.required],
+      images: ['', Validators.required],
     })
   }
   EnviarDatos(){
@@ -22,9 +23,8 @@ export class PutComponent {
       id: this.datosUsuario.get('id')!.value,
       title: this.datosUsuario.get('title')!.value,
       price: this.datosUsuario.get('price')!.value,
+      images: this.datosUsuario.get('images')!.value,
     };
-    console.log(datos)
-    console.log(datos.id)
     /*
     this.drezac.putProduct(datos.title, datos.price, datos.id).subscribe(data => {
       console.log(data)

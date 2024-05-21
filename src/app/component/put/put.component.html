@@ -20,5 +20,10 @@
       <input type="number" class="form-control" id="exampleInputPrice" formControlName="price" placeholder="Price">
       <span class="danger" *ngIf="datosUsuario.get('price')!.invalid && datosUsuario.get('price')!.touched">La Identificación es <strong>Obligatoria</strong></span>
     </div>
+    <div class="form-group">
+      <label for="exampleInputimages">images</label>
+      <input type="number" class="form-control" id="exampleInputimages" formControlName="images" placeholder="images">
+      <span class="danger" *ngIf="datosUsuario.get('images')!.invalid && datosUsuario.get('images')!.touched">La Identificación es <strong>Obligatoria</strong></span>
+    </div>
     <button type="submit" class="btn btn-primary" [disabled]="datosUsuario.invalid">Submit</button>
   </form>

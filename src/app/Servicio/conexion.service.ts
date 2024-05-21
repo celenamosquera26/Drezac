@@ -45,14 +45,12 @@ deleteProduct(id:number){
   return this.Vestido.delete(`${this.URL}/products/${id}`)
 }
 
-putProduct(title:string, price: number,images:string, id:number){
+putProduct(title:string, price: number,images:string[], id:number){
   this.datos = {
       title: title,
       price: price,
       images:images
   }
-  console.log(this.datos)
-  console.log(id)
   return this.Vestido.put(`${this.URL}/products/${id}`, this.datos)
 }
 

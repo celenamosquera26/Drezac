@@ -75,6 +75,7 @@ ngOnInit(): void {
         });
 
       this.info=data
+      console.log(this.info)
       //Info tiene el array de la informacion de toda la api, necesito que cada valor se le asigne directamnte en editarProducto para que los form se rellenen con sus valores
       //Es decir que si unproducto tiene precio 100 y titulo algo, en el formualrio debe aparecer titulo:algo precio:100
     })
@@ -87,7 +88,7 @@ crearProducto(){
     price: this.datosCrear.get('price')!.value,
     description: this.datosCrear.get('description')!.value,
     categoryId: this.datosCrear.get('categoryId')!.value,
-    images: ["https://i.imgur.com/R2PN9Wq.jpeg"]
+    images: [this.datosCrear.get('images')!.value],
   };
   this.ConexionService.postElaborar(datos).subscribe(data => {
     //Recarga la página cuando el método finaliza
@@ -114,12 +115,12 @@ abrirEdicion(product:any){
   this.datosProducto.patchValue({
     title: product.title,
     price:product.price,
-    images: ["https://i.imgur.com/R2PN9Wq.jpeg"]
+    images: product.images
   });
+  console.log(this.datosProducto)
 }
 
 editarProducto(id:number){
-  console.log(id)
   this.ConexionService.putProduct(this.datosProducto.value.title, this.datosProducto.value.price,this.datosProducto.value.images,id).subscribe(data => {
     console.log(data)
     location.reload()
