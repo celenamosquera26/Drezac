@@ -16,14 +16,15 @@
             <label for="exampleInputCategoryId">Category id</label>
             <input type="number" class="form-control" CategoryId="exampleInputCategoryId" formControlName="categoryId" placeholder="CategoryId">
           </div>
-          <button (click)="crearProducto()">Crear</button>
+          <button type="button" (click)="crearProducto()">Crear</button>
     </form>
     <div *ngFor="let ropa of info" class="item">
+      <!--ropa es una posición exacta del array por así decirlo, estams accediendo a un array individualmente-->
         <p>{{ropa.title}}</p>
         <p>{{ropa.price}}</p>
         <!--La linéa de abajo establece las imágenes dadas por platzi-->
-        <img src="{{ropa.category.image}}" alt="" class="imgProducto">
-        <button (click)="eliminarProducto(ropa,ropa.id)">eliminarProducto</button>
+        <img src="{{ropa.images[0]}}" alt="" class="imgProducto">
+        <button (click)="eliminarProducto(ropa.id)">eliminarProducto</button>
         <button (click)="abrirEdicion(ropa)">Abrir formulario de edición</button>
         <form action="" [formGroup]="datosProducto" *ngIf="productoSeleccionado == ropa">
             <div class="form-group">

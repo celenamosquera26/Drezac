@@ -18,7 +18,7 @@ getRopaParaDormir(){
   */
   //Hablo de este número                               |
   //                                                   v
-  return this.Vestido.get(`${this.URL}/products?offset=40&limit=20`);
+  return this.Vestido.get(`${this.URL}/products`);
   /*
   Aumenten el número hasta que lleguen al final, si al copilar no aparece ningún producto es porque se pasaron demasiado y deben bajarle un poco, el 50 en mi caso
   aparece el producto que cree, pero solo en mi caso, estoy un 99.99% que no aparecerá para ustedes, primero creen el producto y busquenlo
@@ -27,6 +27,7 @@ getRopaParaDormir(){
 }
 
 postElaborar(product:Producto){
+  //Se tiene que enviar como un json
   let data = {
     product:product
   }
@@ -35,10 +36,12 @@ postElaborar(product:Producto){
   El error se daba por culpa de  images y category, images lo explico en post.component.ts, category debe tener un valor que existe en la api,
   no estoy muy seguro cuál es el valor máximo, pero cuando creen un producto en el formulario post en el campo de category pongan números pequeños como 5
   */
+ //Mandar  con la url correspondiente con el método adecuado y los datos a crear
   return this.Vestido.post(`${this.URL}/products`, data.product);
 }
 
-deleteProduct(product: Producto, id:number){
+deleteProduct(id:number){
+  //El método delete y el llamado de la id hace que se borre el producto con dicha id
   return this.Vestido.delete(`${this.URL}/products/${id}`)
 }
 

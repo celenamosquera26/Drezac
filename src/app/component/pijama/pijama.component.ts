@@ -16,6 +16,7 @@ export class PijamaComponent implements OnInit {
   productoSeleccionado:any
   datos:any
 constructor(private ConexionService:ConexionService, private fb: FormBuilder){
+  //Estos datos inicializan el formulario
   this.datosProducto = this.fb.group({
     title: ['', Validators.required],
     price: ['', Validators.required],
@@ -29,8 +30,50 @@ constructor(private ConexionService:ConexionService, private fb: FormBuilder){
     images: ['', Validators.required],
   })
 }
+//Hace algo cuando se carga la página
 ngOnInit(): void {
-    this.ConexionService.getRopaParaDormir().subscribe(data => {
+  //Cuando la página carga obtiene todos los productos
+    this.ConexionService.getRopaParaDormir().subscribe((data: any) => {
+      //El resultado de todo eso es un array que se guarda en la variable
+      //info es un array
+      data.map((item: any) => {
+
+
+        let imageStringify = JSON.stringify(item.images); // convertimos el array de imagenes a string
+        
+        
+        let imageNoGarbage = imageStringify
+        
+        
+        .substring(2, imageStringify.length - 2)
+        
+        
+        .replaceAll('\\', ' ')
+        
+        
+        .replaceAll('""', '"')
+        
+        
+        .replaceAll('" "', '"')
+        
+        
+        .replaceAll(' ', '');
+        
+        
+        try {
+        
+        
+        item.images = JSON.parse(imageNoGarbage);
+        
+        
+        item.imagesActual = item.images[0];
+        
+        
+        } catch (e) {}
+        
+        
+        });
+
       this.info=data
       //Info tiene el array de la informacion de toda la api, necesito que cada valor se le asigne directamnte en editarProducto para que los form se rellenen con sus valores
       //Es decir que si unproducto tiene precio 100 y titulo algo, en el formualrio debe aparecer titulo:algo precio:100
@@ -47,14 +90,14 @@ crearProducto(){
     images: ["https://i.imgur.com/R2PN9Wq.jpeg"]
   };
   this.ConexionService.postElaborar(datos).subscribe(data => {
+    //Recarga la página cuando el método finaliza
     location.reload()
-
   })
 }
 
-eliminarProducto(producto:Producto,id:number){
+eliminarProducto(id:number){
   try{
-    this.ConexionService.deleteProduct(producto, id).subscribe(data => {
+    this.ConexionService.deleteProduct(id).subscribe(data => {
       location.reload()
     })
   }
@@ -66,6 +109,8 @@ eliminarProducto(producto:Producto,id:number){
 
 abrirEdicion(product:any){
   this.productoSeleccionado = product
+  //patch value es crear un formualrio temporalmente
+  //Se crear el formulario y los valores que se seleccionan se ponen en los inputs
   this.datosProducto.patchValue({
     title: product.title,
     price:product.price,
