@@ -23,12 +23,11 @@ export class PostComponent {
       title: this.datosUsuario.get('title')!.value,
       price: this.datosUsuario.get('price')!.value,
       description: this.datosUsuario.get('description')!.value,
-      categoryId: this.datosUsuario.get('categoryId')!.value,
       images: ["https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg","https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Eiche_bei_Graditz.jpg/1920px-Eiche_bei_Graditz.jpg"]
     };
     //Al parecer es necesario poner más de una URL para que la api lo detecte como un array, miren el comentario de abajo, es importante
     console.log(datos)
-    this.drezac.postElaborar(datos).subscribe((data:any)=> {
+    this.drezac.postProduct(datos).subscribe((data:any)=> {
       //Cuando ustedes ponen campos en el fomulario post, en consola, saldrán los datos
       console.log(data)//En este sacara todo el array de datos
       console.log(data.id)//En este se mostrará únicamente la id del nuevo producto
